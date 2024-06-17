@@ -8,6 +8,9 @@ import Lexer
 %tokentype { Token }
 %error { parseError }
 
+
+--Mapeamento dos tokens do analisador léxico para o parser associando cada token a seu correspondente
+--literal ou identificador
 %token
     num         { TokenNum $$ }
     '+'         { TokenAdd }
@@ -27,6 +30,7 @@ import Lexer
     Bool        { TokenBoolean }
     Number      { TokenNumber }
 
+--Precedência e associatividade
 %nonassoc if then else
 %left '+' '-'
 %left '*'
@@ -35,6 +39,7 @@ import Lexer
 
 %% 
 
+--Regras da produção gramatical que definem como os tokens são combinados para formar expressões
 Exp     : num                        { Num $1 }
         | var                        { Var $1 }
         | false                      { BFalse }

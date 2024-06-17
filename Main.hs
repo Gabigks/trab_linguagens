@@ -18,10 +18,13 @@ main = do
       let ast = parser tokens
       putStrLn "\nAST:"
       print ast
-      let evaluatedResult = eval typedAst
+      let checkedAst = typecheck ast
+      putStrLn "\nType Checked AST:"
+      print checkedAst
+      let evaluatedResult = eval checkedAst
       putStrLn "\nEvaluated Result:"
       print evaluatedResult
-      let jsCode = toJavaScript typedAst
+      let jsCode = toJavaScript checkedAst
       putStrLn "\nJavaScript Code:"
       putStrLn jsCode
     _ -> putStrLn "Usage: program <filename>"

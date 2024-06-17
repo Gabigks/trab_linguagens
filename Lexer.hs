@@ -2,11 +2,13 @@ module Lexer where
 
 import Data.Char 
 
+--Tipos básicos usados nas expressões
 data Ty = TBool
         | TNum
         | TFun Ty Ty 
         deriving (Show, Eq)
 
+--Possíveis expressões no cálculo lambda
 data Expr = BTrue
           | BFalse
           | Num Int 
@@ -20,6 +22,7 @@ data Expr = BTrue
           | Eq Expr Expr
           deriving (Show, Eq)
 
+--Possíveis tokens que o analisador léxico pode reconhecer
 data Token = TokenTrue 
            | TokenFalse 
            | TokenNum Int 
@@ -42,6 +45,7 @@ data Token = TokenTrue
 isToken :: Char -> Bool
 isToken c = elem c "->&|="
 
+--Onde é feito a lista de tokens
 lexer :: String -> [Token]
 lexer [] = [] 
 lexer ('+':cs) = TokenAdd : lexer cs 

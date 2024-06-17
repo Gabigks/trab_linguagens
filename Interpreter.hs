@@ -9,10 +9,10 @@ toJavaScript BFalse = "false"
 toJavaScript (Num n) = show n
 toJavaScript (Add e1 e2) = toJavaScript e1 ++ " + " ++ toJavaScript e2
 toJavaScript (And e1 e2) = toJavaScript e1 ++ " && " ++ toJavaScript e2
-toJavaScript (If e e1 e2) = "if (" ++ toJavaScript e ++ ") { " ++ toJavaScript e1 ++ " } else { " ++ toJavaScript e2 ++ " }"
+toJavaScript (If e e1 e2) = "(" ++ toJavaScript e ++ " ? " ++ toJavaScript e1 ++ " : " ++ toJavaScript e2 ++ ")"
 toJavaScript (Var v) = v
 toJavaScript (Lam v _ e) = "function(" ++ v ++ ") { return " ++ toJavaScript e ++ "; }"
-toJavaScript (App e1 e2) = toJavaScript e1 ++ "(" ++ toJavaScript e2 ++ ")"
+toJavaScript (App e1 e2) = "(" ++ toJavaScript e1 ++ ")(" ++ toJavaScript e2 ++ ")"
 toJavaScript (Paren e) = "(" ++ toJavaScript e ++ ")"
 toJavaScript (Eq e1 e2) = toJavaScript e1 ++ " === " ++ toJavaScript e2
 
