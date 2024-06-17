@@ -1,1 +1,3 @@
-(\x: Bool -> (\y: Bool -> x && y)) true false
+((\x: Bool -> (\y: Bool -> x && y)) true) false
+
+#Função de conjunção booleana

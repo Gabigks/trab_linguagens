@@ -12,6 +12,7 @@ main = do
   case args of
     [fileName] -> do
       content <- readFile fileName
+      print content
       let tokens = lexer content
       putStrLn "Tokens:"
       print tokens

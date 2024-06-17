@@ -1,1 +1,0 @@
-(\x: Number -> (\y: Number -> (\z: Number -> if x + y == z then true else false))) 1 2 3

@@ -17,10 +17,7 @@ toJavaScript (Paren e) = "(" ++ toJavaScript e ++ ")"
 toJavaScript (Eq e1 e2) = toJavaScript e1 ++ " === " ++ toJavaScript e2
 
 subst :: String -> Expr -> Expr -> Expr 
-subst x n b@(Var v) = if v == x then 
-                        n 
-                      else 
-                        b 
+subst x n b@(Var v) = if v == x then n else b 
 subst x n (Lam v t b) = Lam v t (subst x n b)
 subst x n (App e1 e2) = App (subst x n e1) (subst x n e2)
 subst x n (Add e1 e2) = Add (subst x n e1) (subst x n e2)
